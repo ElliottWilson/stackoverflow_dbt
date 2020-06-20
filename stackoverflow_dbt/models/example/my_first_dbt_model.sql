@@ -11,10 +11,7 @@
 
 with source_data as (
 
-    select 1 as id
-    union all
-    select null as id
-
+SELECT * FROM `stackoverflow-280817.stackoverflow_raw.badges` LIMIT 1000
 )
 
 select *
