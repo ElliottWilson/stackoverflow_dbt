@@ -33,4 +33,4 @@ clean-targets:         # directories to be removed by `dbt clean`
 # using the `{{ config(...) }}` macro.
 models:
   stackoverflow_dbt:
-    +materialized: table
+    materialized: table
