@@ -1,0 +1,54 @@
+version: 2
+
+sources:
+  - name: stackoverflow_raw
+    description: raw data from stackoverflow
+    tables:
+      - name: posts_answers
+      - name: posts_questions
+      - name: votes
+      - name: users
+
+models:
+  - name: tag_dim
+    columns:
+      - name: srgt_key
+        tests:
+          - unique
+          - not_null
+  - name: users_dim
+    columns:
+      - name: srgt_key
+        tests:
+          - unique
+          - not_null
+  - name: votes_dim
+    columns:
+      - name: srgt_key
+        tests:
+          - unique
+          - not_null
+  - name: post_questions_dim
+    columns:
+      - name: srgt_key
+        tests:
+          - unique
+          - not_null
+  - name: first_answer_dim
+    columns:
+      - name: srgt_key
+        tests:
+          - unique
+          - not_null
+  - name: answer_dim
+    columns:
+      - name: srgt_key
+        tests:
+          - unique
+          - not_null
+  - name: question_fact
+    columns:
+      - name: srgt_key
+        tests:
+          - unique
+          - not_null

@@ -1,11 +1,12 @@
 {{
   config(
-    alias='post_answer_dim',
+    alias='answer_dim',
     materialized = "table"
   )
 }}
 
-SELECT id                       AS answer_id,
+SELECT GENERATE_UUID()          AS srgt_key,
+       id                       AS answer_id,
        body                     AS answer_text,
        comment_count            AS answer_comment_count,
        community_owned_date     AS answer_community_owned_date,
@@ -19,4 +20,4 @@ SELECT id                       AS answer_id,
        parent_id                AS question_id,
        post_type_id             AS answer_post_type_id,
        score                    AS answer_score
-FROM `stackoverflow_raw.posts_answers`
+FROM {{ source('stackoverflow_raw', 'posts_answers') }}

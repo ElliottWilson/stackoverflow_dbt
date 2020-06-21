@@ -1,11 +1,12 @@
 {{
   config(
-    alias='post_questions_dim',
+    alias='questions_dim',
     materialized = "table"
   )
 }}
 
-SELECT id                       AS question_id,
+SELECT GENERATE_UUID()          AS srgt_key,
+       id                       AS question_id,
        title                    AS question_title,
        body                     AS question_body,
        accepted_answer_id,
@@ -26,14 +27,14 @@ SELECT id                       AS question_id,
        CASE
            WHEN accepted_answer_id is NULL AND (answer_count = 0 OR answer_count IS NULL) THEN FALSE
            ELSE TRUE
-       END                      AS is_answered,
+       END                                                     AS is_answered,
 --     Current date would normally be used instead of 2020-05-31 but the data set only has
 --     date up to this date
        CASE
            WHEN accepted_answer_id is NULL THEN DATE_DIFF(DATE('2020-05-31'), DATE(creation_date), DAY)
            ELSE NULL
-       END                                                      AS number_of_days_unanswered,
+       END                                                     AS number_of_days_unanswered,
        DATE_DIFF(DATE('2020-05-31'), DATE(creation_date), DAY) AS number_of_days_since_last_activity,
        DATE_DIFF(DATE('2020-05-31'), DATE(creation_date), DAY) AS number_of_days_since_created
-FROM `stackoverflow_raw.posts_questions`
+FROM {{ source('stackoverflow_raw', 'posts_questions') }}
 

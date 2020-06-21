@@ -5,7 +5,8 @@
   )
 }}
 
-SELECT id,
+SELECT GENERATE_UUID() AS srgt_key,
+       id AS user_id,
        display_name,
        about_me,
        age,
@@ -18,4 +19,4 @@ SELECT id,
        views,
        profile_image_url,
        website_url
-FROM `stackoverflow_raw.users`
+FROM {{ source('stackoverflow_raw', 'users') }}
