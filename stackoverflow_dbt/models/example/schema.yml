@@ -1,5 +1,0 @@
-version: 2
-
-sources:
-  - name: stackoverflow_raw
-    description: raw data from stackoverflow
