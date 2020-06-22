@@ -28,12 +28,6 @@ models:
         tests:
           - unique
           - not_null
-  - name: post_questions_dim
-    columns:
-      - name: srgt_key
-        tests:
-          - unique
-          - not_null
   - name: first_answer_dim
     columns:
       - name: srgt_key

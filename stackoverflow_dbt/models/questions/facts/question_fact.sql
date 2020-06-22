@@ -16,17 +16,14 @@ SELECT GENERATE_UUID()                                         AS srgt_key,
        last_editor_user_id                                     AS question_last_editor_user_id,
 
 -- Facts
-       title                                                   AS question_title,
-       body                                                    AS question_body,
        answer_count,
        comment_count                                           AS question_comment_count,
        community_owned_date                                    AS question_community_owned_date,
-       creation_date                                           AS question_creation_date,
+       question_fact.creation_date                             AS question_creation_date,
        favorite_count                                          AS question_favorite_count,
        last_activity_date                                      AS question_last_activity_date,
        last_edit_date                                          AS question_last_edit_date,
        score                                                   AS question_score,
-       tags                                                    AS question_tags,
        view_count                                              AS question_view_count,
        CASE
            WHEN accepted_answer_id is NULL AND (answer_count = 0 OR answer_count IS NULL) THEN FALSE
@@ -35,14 +32,13 @@ SELECT GENERATE_UUID()                                         AS srgt_key,
 --     Current date would normally be used instead of 2020-05-31 but the data set only has
 --     date up to this date
        CASE
-           WHEN accepted_answer_id is NULL THEN DATE_DIFF(DATE('2020-05-31'), DATE(creation_date), DAY)
+           WHEN accepted_answer_id is NULL THEN DATE_DIFF(DATE('2020-05-31'), DATE(question_fact.creation_date  ), DAY)
            ELSE NULL
        END                                                     AS number_of_days_unanswered,
-       DATE_DIFF(DATE('2020-05-31'), DATE(creation_date), DAY) AS number_of_days_since_last_activity,
-       DATE_DIFF(DATE('2020-05-31'), DATE(creation_date), DAY) AS number_of_days_since_created,
-       DATE_DIFF(DATE(first_answer_date), DATE(question_creation_date), DAY) AS number_of_days_to_answer
+       DATE_DIFF(DATE('2020-05-31'), DATE(question_fact.creation_date), DAY) AS number_of_days_since_last_activity,
+       DATE_DIFF(DATE('2020-05-31'), DATE(question_fact.creation_date), DAY) AS number_of_days_since_created,
+       DATE_DIFF(DATE(first_answer_date), DATE(question_fact.creation_date), DAY) AS number_of_days_to_answer
 FROM {{ source('stackoverflow_raw', 'posts_questions') }} AS question_fact
-    LEFT JOIN {{ref('users_dim')}} AS users ON question_fact.question_owner_user_id = users.user_id
-    LEFT JOIN {{ref('first_answer_dim')}} AS first_answer ON question_fact.question_id = first_answer.question_id
+    LEFT JOIN {{ref('users_dim')}} AS users ON question_fact.owner_user_id = users.user_id
+    LEFT JOIN {{ref('first_answer_dim')}} AS first_answer ON question_fact.id  = first_answer.question_id
     LEFT JOIN {{ref('answer_dim')}} AS accepted_answer ON question_fact.accepted_answer_id = accepted_answer.answer_id
-    LEFT JOIN {{ref('votes_dim')}} AS votes ON question_fact.question_id = votes.post_id
