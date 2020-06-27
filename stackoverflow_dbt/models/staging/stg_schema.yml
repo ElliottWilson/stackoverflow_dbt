@@ -4,11 +4,9 @@ sources:
   - name: stackoverflow_raw
     description: raw data from stackoverflow
     tables:
-      - name: stg_answers
-      - name: stg_questions
-      - name: stg_votes
-      - name: stg_users
-
+      - name: posts_answers
+      - name: votes
+      - name: users
 models:
   - name: stg_answers
     columns:
@@ -20,7 +18,6 @@ models:
         tests:
           - unique
           - not_null
-
   - name: stg_users
     columns:
       - name: srgt_key_user_id
@@ -31,7 +28,6 @@ models:
         tests:
           - unique
           - not_null
-
   - name: stg_votes
     columns:
       - name: srgt_key_votes
@@ -42,8 +38,7 @@ models:
         tests:
           - unique
           - not_null
-
-   - name: stg_dates
+  - name: stg_dates
     columns:
       - name: srgt_key_dates
         tests:
