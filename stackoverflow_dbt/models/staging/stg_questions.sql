@@ -5,16 +5,15 @@
   )
 }}
 
-SELECT GENERATE_UUID()                                         AS srgt_key_questions,
-       id                                                      AS question_id,
+SELECT id                                                      AS question_id,
        title                                                   AS question_title,
        body                                                    AS question_body,
        accepted_answer_id,
        answer_count,
        comment_count                                           AS question_comment_count,
-       community_owned_date                                    AS question_community_owned_date,
+       EXTRACT(DATE FROM community_owned_date)                 AS question_community_owned_date,
        EXTRACT(DATE FROM creation_date)                        AS question_creation_date,
-       favorite_count                                          AS question_favorite_count,
+       COALESCE(favorite_count,0)                              AS question_favorite_count,
        EXTRACT(DATE FROM last_activity_date)                   AS question_last_activity_date,
        EXTRACT(DATE FROM last_edit_date)                       AS question_last_edit_date,
        last_editor_display_name                                AS question_last_edit_display_name,
@@ -22,7 +21,7 @@ SELECT GENERATE_UUID()                                         AS srgt_key_quest
        owner_display_name                                      AS question_owner_display_name,
        owner_user_id                                           AS question_owner_user_id,
        score                                                   AS question_score,
-       REPLACE('tags', '|', ',')                               AS question_tags_grouped,
+       REPLACE(tags, '|', ',')                                 AS question_tags_grouped,
        view_count                                              AS question_view_count,
        CASE
            WHEN accepted_answer_id is NULL AND (answer_count = 0 OR answer_count IS NULL) THEN FALSE

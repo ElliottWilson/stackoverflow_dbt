@@ -1,0 +1,18 @@
+version: 2
+
+sources:
+  - name: stackoverflow_raw
+    description: raw data from stackoverflow
+    tables:
+      - name: stg_answers
+      - name: stg_questions
+      - name: stg_votes
+      - name: stg_users
+
+models:
+  - name: base_questions
+    columns:
+      - name: id
+        tests:
+          - unique
+          - not_null

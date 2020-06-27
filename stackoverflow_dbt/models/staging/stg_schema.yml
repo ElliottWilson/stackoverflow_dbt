@@ -4,14 +4,13 @@ sources:
   - name: stackoverflow_raw
     description: raw data from stackoverflow
     tables:
-      - name: dim_answer_details
-      - name: dim_dates
-      - name: dim_users
-      - name: dim_question_details
-      - name: fct_question
+      - name: stg_answers
+      - name: stg_questions
+      - name: stg_votes
+      - name: stg_users
 
 models:
-  - name: dim_answer_details
+  - name: stg_answers
     columns:
       - name: srgt_key_answers
         tests:
@@ -22,16 +21,9 @@ models:
           - unique
           - not_null
 
-  - name: dim_dates
+  - name: stg_users
     columns:
-      - name: date_actual
-        tests:
-          - unique
-          - not_null
-
-  - name: dim_users
-    columns:
-      - name: sk_dim_users
+      - name: srgt_key_user_id
         tests:
           - unique
           - not_null
@@ -40,20 +32,24 @@ models:
           - unique
           - not_null
 
-  - name: dim_question_details
+  - name: stg_votes
     columns:
-      - name: sk_dim_question_details
+      - name: srgt_key_votes
         tests:
           - unique
           - not_null
-      - name: question_id
+      - name: vote_id
         tests:
           - unique
           - not_null
 
-  - name: fct_question
+   - name: stg_dates
     columns:
-      - name: id
+      - name: srgt_key_dates
+        tests:
+          - unique
+          - not_null
+      - name: date_actual
         tests:
           - unique
           - not_null

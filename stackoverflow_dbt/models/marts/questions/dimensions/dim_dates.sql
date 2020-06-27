@@ -5,7 +5,8 @@
   )
 }}
 
-SELECT  date_day,
+SELECT  GENERATE_UUID() AS sk_dim_dates,
+        date_day,
         date_actual,
         day_of_month,
         month_actual,

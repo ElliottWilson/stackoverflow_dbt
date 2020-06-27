@@ -1,7 +1,7 @@
 {{
   config(
     alias='stg_dates',
-    materialized = "table"
+    materialized = "ephemeral"
   )
 }}
 

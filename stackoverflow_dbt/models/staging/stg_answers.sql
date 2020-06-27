@@ -1,18 +1,17 @@
 {{
   config(
-    alias='stg_answer',
+    alias='stg_answers',
     materialized = "ephemeral"
   )
 }}
 
-SELECT GENERATE_UUID()                        AS srgt_key_answers,
-       id                                     AS answer_id,
+SELECT id                                     AS answer_id,
        body                                   AS answer_text,
        comment_count                          AS answer_comment_count,
-       community_owned_date                   AS answer_community_owned_date,
-       creation_date                          AS answer_creation_date,
-       EXTRACT(date FROM last_activity_date) AS answer_last_activity_date,
-       EXTRACT(date FROM last_edit_date)     AS answer_last_edit_date,
+       EXTRACT(date FROM community_owned_date) AS answer_community_owned_date,
+       EXTRACT(date FROM creation_date)       AS answer_creation_date,
+       EXTRACT(date FROM last_activity_date)  AS answer_last_activity_date,
+       EXTRACT(date FROM last_edit_date)      AS answer_last_edit_date,
        last_editor_display_name               AS answer_last_editor_display_name,
        last_editor_user_id                    AS answer_last_editor_user_id,
        owner_display_name                     AS answer_owner_display_name,

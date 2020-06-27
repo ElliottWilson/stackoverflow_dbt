@@ -5,7 +5,7 @@
   )
 }}
 
-SELECT
+SELECT question_id AS id
 -- FK to question and answer detail dimensions
        question_id,
        accepted_answer_id,
@@ -20,7 +20,7 @@ SELECT
        question_last_activity_date,
        question_community_owned_date,
        first_answer_date,
-       accepted_answer_date,
+       accepted_answer_creation_date,
 
 -- Facts
        answer_count,

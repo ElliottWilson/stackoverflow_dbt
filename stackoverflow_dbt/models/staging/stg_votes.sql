@@ -1,6 +1,6 @@
 {{
   config(
-    alias='base_votes',
+    alias='stg_votes',
     materialized = "ephemeral"
   )
 }}

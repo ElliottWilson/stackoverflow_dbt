@@ -5,7 +5,7 @@
   )
 }}
 
-SELECT GENERATE_UUID() AS sk_question_details,
+SELECT GENERATE_UUID() AS sk_dim_question_details,
        question_id,
        question_title,
        question_body,

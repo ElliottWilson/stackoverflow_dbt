@@ -5,7 +5,8 @@
   )
 }}
 
-SELECT user_id,
+SELECT GENERATE_UUID() AS sk_dim_users,
+       user_id,
        user_display_name,
        user_about_me,
        user_age,
