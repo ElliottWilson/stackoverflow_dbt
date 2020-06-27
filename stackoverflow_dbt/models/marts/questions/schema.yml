@@ -1,15 +1,5 @@
 version: 2
 
-sources:
-  - name: stackoverflow_raw
-    description: raw data from stackoverflow
-    tables:
-      - name: dim_answer_details
-      - name: dim_dates
-      - name: dim_users
-      - name: dim_question_details
-      - name: fct_question
-
 models:
   - name: dim_answer_details
     columns:
@@ -51,7 +41,7 @@ models:
           - unique
           - not_null
 
-  - name: fct_question
+  - name: fct_questions
     columns:
       - name: id
         tests:

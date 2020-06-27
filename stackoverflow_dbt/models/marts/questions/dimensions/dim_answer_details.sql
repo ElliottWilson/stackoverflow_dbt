@@ -5,7 +5,7 @@
   )
 }}
 
-SELECT srgt_key_answers,
+SELECT GENERATE_UUID() AS srgt_key_answers,
        answer_id,
        answer_text,
        answer_community_owned_date,

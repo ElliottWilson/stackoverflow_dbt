@@ -1,7 +1,7 @@
 {{
   config(
-    alias='tags_by_question__split',
-    materialized = "ephemeral"
+    alias='dim_tags_split',
+    materialized = "table"
   )
 }}
 

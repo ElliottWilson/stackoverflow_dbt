@@ -1,7 +1,7 @@
 {{
   config(
     alias='dim_tags_bridge',
-    materialized = "ephemeral"
+    materialized = "table"
   )
 }}
 

@@ -5,7 +5,8 @@
   )
 }}
 
-SELECT question_id AS id
+SELECT question_id AS id,
+
 -- FK to question and answer detail dimensions
        question_id,
        accepted_answer_id,
