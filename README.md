@@ -25,7 +25,7 @@ default:\
      pass: ????\
      dbname: ????\
      schema: ????\
-   target: bigquery\
+   target: bigquery
    
  4. Once the credentials are set up you should navigate to the ./stackoverflow_dbt directory and run the command dbt run in the command line.
  
