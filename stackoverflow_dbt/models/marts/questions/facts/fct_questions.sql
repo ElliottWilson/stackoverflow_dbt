@@ -1,6 +1,6 @@
 {{
   config(
-    alias='fct_question',
+    alias='fct_questions',
     materialized = "table"
   )
 }}
