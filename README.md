@@ -16,16 +16,16 @@ https://cloud.google.com/source-repositories/docs/viewing-users-and-permissions
 
 default:
   outputs:
-    bigquery:
-      type: bigquery
-      threads: 4
-      host: ????
-      port: ????
-      user: ????
-      pass: ????
-      dbname: ????
-      schema: ????
-  target: bigquery
-  
+   bigquery:
+    type: bigquery
+     threads: 4
+     host: ????
+     port: ????
+     user: ????
+     pass: ????
+     dbname: ????
+     schema: ????
+   target: bigquery
+   
  4. Once the credentials are set up you should navigate to the ./stackoverflow_dbt directory and run the command dbt run in the command line.
  
