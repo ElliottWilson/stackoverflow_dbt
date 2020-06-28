@@ -5,7 +5,7 @@
   )
 }}
 
-SELECT GENERATE_UUID() AS srgt_key_tags_split,
+SELECT GENERATE_UUID() AS sk_tags_split,
        question_id,
        question_tags_grouped
 FROM {{ ref('stg_questions') }}
