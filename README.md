@@ -14,18 +14,18 @@ https://cloud.google.com/source-repositories/docs/viewing-users-and-permissions
 
 3. You need to set up your ./dbt_profile with the relvent database credentials it will look some thing like this after:
 
-default:
-  outputs:
-   bigquery:
-    type: bigquery
-     threads: 4
-     host: ????
-     port: ????
-     user: ????
-     pass: ????
-     dbname: ????
-     schema: ????
-   target: bigquery
+default:\
+  outputs:\
+   bigquery:\
+    type: bigquery\
+     threads: 4\
+     host: ????\
+     port: ????\
+     user: ????\
+     pass: ????\
+     dbname: ????\
+     schema: ????\
+   target: bigquery\
    
  4. Once the credentials are set up you should navigate to the ./stackoverflow_dbt directory and run the command dbt run in the command line.
  
